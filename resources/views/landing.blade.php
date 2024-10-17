@@ -3,6 +3,11 @@
 @section('title', 'Posyandu Dahlia')
 
 @section('content')
+    <div class="text-center">
+        <h3 class="fw-bold">Selamat Datang!</h3>
+        <p>Anda Login Sebagai : <b></b></p>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero mb-5" id="home" style="background: url('{{ asset('images/banner.png') }}') no-repeat center center; background-size: cover;
         <div class="container text-center py-5">
@@ -93,28 +98,32 @@
             <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
             <p class="mb-4">Statistik Tahun 2024</p>
         </div>
-        <div class="row">
+        <div class="row mt-5">
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
                     {{-- <h3 id="data-bayi">{{ $dataBayi }}</h3> --}}
+                    <h3 id="data-bayi">30</h3>
                     <p>Data Bayi</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
                     {{-- <h3 id="data-balita">{{ $dataBalita }}</h3> --}}
+                    <h3 id="data-balita">43</h3>
                     <p>Data Balita</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
                     {{-- <h3 id="data-ibu-hamil">{{ $dataIbuHamil }}</h3> --}}
+                    <h3 id="data-ibu-hamil">7</h3>
                     <p>Data Ibu Hamil</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
                     {{-- <h3 id="data-lansia">{{ $dataLansia }}</h3> --}}
+                    <h3 id="data-lansia">5</h3>
                     <p>Data Lansia</p>
                 </div>
             </div>
