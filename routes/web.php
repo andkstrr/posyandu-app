@@ -36,3 +36,6 @@ Route::prefix('item')->name('item.')->group(function () {
     Route::put('/update/{id}', [ItemController::class, 'update'])->name('update'); // Update barang
     Route::delete('/destroy/{id}', [ItemController::class, 'destroy'])->name('destroy'); // Hapus barang
 });
+
+Route::get('/person/print', [PersonController::class, 'printAll'])->name('person.print');
+Route::get('/item/print', [ItemController::class, 'printAll'])->name('item.print');

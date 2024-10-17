@@ -84,9 +84,16 @@
         </tbody>
     </table>
 
-    {{-- Tampilkan pagination --}}
-    <div class="d-flex justify-content-center mt-3">
-        {{ $items->links() }}
+    <div class="d-flex justify-content-lg-between">
+        <div class="d-flex content-start mt-3">
+            <!-- Tombol Print -->
+            <a href="{{ route('item.print') }}" class="btn btn-secondary">Print Semua Data</a>
+        </div>
+
+        {{-- Tampilkan pagination --}}
+        <div class="d-flex justify-content-end mt-3">
+            {{ $items->links() }}
+        </div>
     </div>
 </div>
 @endsection

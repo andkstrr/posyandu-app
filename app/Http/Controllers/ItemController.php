@@ -19,7 +19,7 @@ class ItemController extends Controller
 
         $items = $query->orderBy('name', 'ASC')->simplePaginate(5); // Menggunakan simplePaginate
 
-        return view('item.index', compact('items')); // Ganti compact('people') dengan compact('items')
+        return view('item.index', compact('items')); 
     }
 
     public function create()
@@ -41,13 +41,13 @@ class ItemController extends Controller
 
     public function edit($id)
     {
-        $item = Item::findOrFail($id); // Fetch the item by ID
-        return view('item.edit', compact('item')); // Pass item to edit view
+        $item = Item::findOrFail($id);
+        return view('item.edit', compact('item'));
     }
 
     public function update(Request $request, $id)
     {
-        $item = Item::findOrFail($id); // Fetch the item by ID
+        $item = Item::findOrFail($id);
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -65,5 +65,11 @@ class ItemController extends Controller
         $item->delete();
 
         return redirect()->route('item.index')->with('success', 'Data barang berhasil dihapus!');
+    }
+
+    public function printAll()
+    {
+        $item = Item::all(); // Mengambil semua data tanpa paginate
+        return view('item.print', compact('item'));
     }
 }

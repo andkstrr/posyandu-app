@@ -7,11 +7,12 @@
     @endif
 
     <div class="d-flex justify-content-between mb-3">
-        <!-- Form pencarian -->
         <!-- Tombol untuk membuka modal -->
         <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPersonModal">
             + Tambah Data Pengunjung
         </button>
+
+        <!-- Form pencarian -->
         <form action="{{ route('person.index') }}" method="GET" class="d-flex">
             <input type="text" name="search_person" class="form-control me-2" placeholder="Cari nama..." value="{{ request('search_person') }}" style="width: 250px;">
             <button type="submit" class="btn btn-secondary">Cari Data</button>
@@ -104,9 +105,16 @@
         </tbody>
     </table>
 
-    {{-- Tampilkan pagination --}}
-    <div class="d-flex justify-content-center mt-3">
-        {{ $people->links() }}
+    <div class="d-flex justify-content-lg-between">
+        <div class="d-flex content-start mt-3">
+            <!-- Tombol Print -->
+            <a href="{{ route('person.print') }}" class="btn btn-secondary">Print Semua Data</a>
+        </div>
+
+        {{-- Tampilkan pagination --}}
+        <div class="d-flex justify-content-end mt-3">
+            {{ $people->links() }}
+        </div>
     </div>
 </div>
 @endsection

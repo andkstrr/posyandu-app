@@ -66,4 +66,10 @@ class PersonController extends Controller
         $person->delete();
         return redirect()->route('person.index')->with('success', 'Data Pengunjung berhasil dihapus!');
     }
+
+    public function printAll()
+    {
+        $people = Person::all(); // Mengambil semua data tanpa paginate
+        return view('person.print', compact('people'));
+    }
 }
