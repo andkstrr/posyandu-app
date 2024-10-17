@@ -16,7 +16,7 @@ use App\Http\Controllers\ItemController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::prefix('person')->name('person.')->group(function () {
