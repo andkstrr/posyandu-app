@@ -21,11 +21,10 @@ Route::get('/', function () {
 
 Route::prefix('person')->name('person.')->group(function () {
     Route::get('/', [PersonController::class, 'index'])->name('index');
-    Route::get('/create', [PersonController::class, 'create'])->name('create');
     Route::post('/store', [PersonController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [PersonController::class, 'edit'])->name('edit');
-    Route::put('/update/{id}', [PersonController::class, 'update'])->name('update');
-    Route::delete('/destroy/{id}', [PersonController::class, 'destroy'])->name('destroy');
+    Route::get('/edit/{person}', [PersonController::class, 'edit'])->name('edit');
+    Route::put('/update/{person}', [PersonController::class, 'update'])->name('update');
+    Route::delete('/destroy/{person}', [PersonController::class, 'destroy'])->name('destroy');
 });
 
 

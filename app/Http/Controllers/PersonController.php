@@ -23,11 +23,13 @@ class PersonController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string',
+            'gender' => 'required|string',
+            'birth_date' => 'required|date',
         ]);
 
         Person::create($validatedData);
 
-        return redirect()->route('person.index')->with('success', 'Data person berhasil ditambahkan!');
+        return redirect()->route('person.index')->with('success', 'Data orang berhasil ditambahkan!');
     }
 
     public function edit(Person $person)
@@ -40,19 +42,18 @@ class PersonController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'type' => 'required|string',
+            'gender' => 'required|string',
+            'birth_date' => 'required|date',
         ]);
 
         $person->update($validatedData);
 
-        return redirect()->route('person.index')->with('success', 'Data person berhasil diupdate.');
+        return redirect()->route('person.index')->with('success', 'Data orang berhasil diupdate.');
     }
 
-    public function destroy($id)
+    public function destroy(Person $person)
     {
-        $person = Person::findOrFail($id);
         $person->delete();
-
-        return redirect()->route('person.index')->with('success', 'Data person berhasil dihapus!');
+        return redirect()->route('person.index')->with('success', 'Data orang berhasil dihapus!');
     }
 }
-

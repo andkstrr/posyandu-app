@@ -6,7 +6,7 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <button type="button" class="btn btn-primary mb-3 float-end" data-bs-toggle="modal" data-bs-target="#addItemModal">
+    <button type="button" class="btn btn-secondary mb-3 float-end" data-bs-toggle="modal" data-bs-target="#addItemModal">
         + Tambah Data Barang
     </button>
 
