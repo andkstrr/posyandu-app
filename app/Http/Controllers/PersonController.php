@@ -29,7 +29,7 @@ class PersonController extends Controller
 
         Person::create($validatedData);
 
-        return redirect()->route('person.index')->with('success', 'Data orang berhasil ditambahkan!');
+        return redirect()->route('person.index')->with('success', 'Data Pengunjung berhasil ditambahkan!');
     }
 
     public function edit(Person $person)
@@ -48,12 +48,12 @@ class PersonController extends Controller
 
         $person->update($validatedData);
 
-        return redirect()->route('person.index')->with('success', 'Data orang berhasil diupdate.');
+        return redirect()->route('person.index')->with('success', 'Data Pengunjung berhasil diupdate.');
     }
 
     public function destroy(Person $person)
     {
         $person->delete();
-        return redirect()->route('person.index')->with('success', 'Data orang berhasil dihapus!');
+        return redirect()->route('person.index')->with('success', 'Data Pengunjung berhasil dihapus!');
     }
 }

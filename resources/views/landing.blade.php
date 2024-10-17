@@ -25,7 +25,7 @@
                 <p class="fs-5">Kami percaya bahwa pendidikan dan kesadaran kesehatan adalah kunci untuk mencapai kesehatan yang optimal. Oleh karena itu, kami juga mengadakan berbagai kegiatan penyuluhan dan pelatihan bagi masyarakat, agar setiap individu dapat memiliki pengetahuan yang cukup untuk menjaga kesehatan diri dan keluarganya.</p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('images/about.png') }}" class="img-fluid" style="width: 600px; height: 450px; margin-left: 45px;" alt="Tentang Kami">
+                <img src="{{ asset('images/about.png') }}" class="img-fluid" style="width: 600px; height: 450px; margin-left: 45px; border-radius: 10px" alt="Tentang Kami">
             </div>
         </div>
     </div>
@@ -33,8 +33,8 @@
     <!-- Services Section -->
     <div class="container landing-section mt-5 mb-5" id="services">
         <div class="text-center mb-4" style="margin-top: 70px;">
-            <h2>Layanan Kami</h2>
-            <p class="mb-4">Kami menyediakan berbagai layanan untuk mendukung kesehatan ibu dan anak.</p>
+            <h2 class="fw-bold fs-1">Layanan Kami</h2>
+            <p class="mb-5">Kami menyediakan berbagai layanan untuk mendukung kesehatan ibu dan anak.</p>
         </div>
         <div class="row overflow-scroll" style="overflow-x: auto; white-space: nowrap">
             <div class="d-flex flex-nowrap ">
@@ -89,35 +89,31 @@
 
     <!-- Statistics Section -->
     <div class="container landing-section mt-5 mb-5" id="statistics">
-        <div class="text-center mb-4">
-            <h2>Data Posyandu Dahlia</h2>
+        <div class="text-center mb-4" style="margin-top: 70px;">
+            <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
             <p class="mb-4">Statistik Tahun 2024</p>
         </div>
         <div class="row">
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
-                    <img src="path/to/baby-icon.png" alt="Data Bayi" class="statistic-icon">
                     {{-- <h3 id="data-bayi">{{ $dataBayi }}</h3> --}}
                     <p>Data Bayi</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
-                    <img src="path/to/toddler-icon.png" alt="Data Balita" class="statistic-icon">
                     {{-- <h3 id="data-balita">{{ $dataBalita }}</h3> --}}
                     <p>Data Balita</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
-                    <img src="path/to/pregnant-icon.png" alt="Data Ibu Hamil" class="statistic-icon">
                     {{-- <h3 id="data-ibu-hamil">{{ $dataIbuHamil }}</h3> --}}
                     <p>Data Ibu Hamil</p>
                 </div>
             </div>
             <div class="col-md-3 text-center">
                 <div class="statistic-card">
-                    <img src="path/to/senior-icon.png" alt="Data Lansia" class="statistic-icon">
                     {{-- <h3 id="data-lansia">{{ $dataLansia }}</h3> --}}
                     <p>Data Lansia</p>
                 </div>

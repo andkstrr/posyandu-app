@@ -8,7 +8,7 @@
 
     <!-- Tombol untuk membuka modal -->
     <button type="button" class="btn btn-secondary float-end mb-3" data-bs-toggle="modal" data-bs-target="#createPersonModal">
-        + Tambah Data Orang
+        + Tambah Data Pengunjung
     </button>
 
     <!-- Modal -->
@@ -18,7 +18,7 @@
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createPersonModalLabel">Tambah Data Orang</h5>
+                        <h5 class="modal-title" id="createPersonModalLabel">Tambah Data Pengunjung</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
