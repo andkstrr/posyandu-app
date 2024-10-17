@@ -7,10 +7,19 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::all();
-        return view('item.index', compact('items'));
+        // Mencari berdasarkan nama item jika ada
+        $searchTerm = $request->input('search_item');
+        $query = Item::query();
+
+        if ($searchTerm) {
+            $query->where('name', 'LIKE', '%' . $searchTerm . '%');
+        }
+
+        $items = $query->orderBy('name', 'ASC')->simplePaginate(5); // Menggunakan simplePaginate
+
+        return view('item.index', compact('items')); // Ganti compact('people') dengan compact('items')
     }
 
     public function create()

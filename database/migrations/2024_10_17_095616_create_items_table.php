@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('image')->nullable(); // Kolom untuk menyimpan nama file gambar
             $table->timestamps();
         });
     }

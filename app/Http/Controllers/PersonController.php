@@ -7,15 +7,25 @@ use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $people = Person::all();
+        // Ambil input pencarian
+        $search = $request->get('search_person');
+
+        // Query untuk mendapatkan data person dengan pencarian dan pagination
+        $people = Person::when($search, function ($query) use ($search) {
+            return $query->where('name', 'LIKE', '%' . $search . '%');
+        })
+        ->orderBy('name', 'ASC')
+        ->simplePaginate(5);
+
+        // Kirim data ke view
         return view('person.index', compact('people'));
     }
 
     public function create()
     {
-        return view('person.create');
+        //
     }
 
     public function store(Request $request)

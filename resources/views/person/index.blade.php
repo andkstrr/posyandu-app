@@ -6,10 +6,18 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <!-- Tombol untuk membuka modal -->
-    <button type="button" class="btn btn-secondary float-end mb-3" data-bs-toggle="modal" data-bs-target="#createPersonModal">
-        + Tambah Data Pengunjung
-    </button>
+    <div class="d-flex justify-content-between mb-3">
+        <!-- Form pencarian -->
+        <!-- Tombol untuk membuka modal -->
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPersonModal">
+            + Tambah Data Pengunjung
+        </button>
+        <form action="{{ route('person.index') }}" method="GET" class="d-flex">
+            <input type="text" name="search_person" class="form-control me-2" placeholder="Cari nama..." value="{{ request('search_person') }}" style="width: 250px;">
+            <button type="submit" class="btn btn-secondary">Cari Data</button>
+        </form>
+    </div>
+
 
     <!-- Modal -->
     <div class="modal fade" id="createPersonModal" tabindex="-1" aria-labelledby="createPersonModalLabel" aria-hidden="true">
@@ -74,7 +82,7 @@
         <tbody>
             @forelse($people as $person)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $loop->iteration + ($people->currentPage() - 1) * $people->perPage() }}</td>
                     <td>{{ $person->name }}</td>
                     <td>{{ $person->type }}</td>
                     <td>{{ $person->gender }}</td>
@@ -95,5 +103,10 @@
             @endforelse
         </tbody>
     </table>
+
+    {{-- Tampilkan pagination --}}
+    <div class="d-flex justify-content-center mt-3">
+        {{ $people->links() }}
+    </div>
 </div>
 @endsection
