@@ -36,11 +36,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="type" class="form-label">Tipe Item:</label>
-                            <input type="text" class="form-control" id="type" name="type" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Harga:</label>
-                            <input type="number" class="form-control" id="price" name="price" required>
+                            <select name="type" id="type" class="form-select" required>
+                                <option value="obat">Obat-obatan</option>
+                                <option value="alat">Alat Kesehatan</option>
+                                <option value="vaksin">Vaksin Imunisasi</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
