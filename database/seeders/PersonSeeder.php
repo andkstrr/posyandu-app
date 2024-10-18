@@ -15,6 +15,55 @@ class PersonSeeder extends Seeder
     {
         //
         Person::create([
+            'name' => 'Ahmad',
+            'type' => 'bayi',
+            'gender' => 'laki-laki',
+            'birth_date' => '2024-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Rahmat',
+            'type' => 'bayi',
+            'gender' => 'laki-laki',
+            'birth_date' => '2024-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Siti',
+            'type' => 'ibu hamil',
+            'gender' => 'perempuan',
+            'birth_date' => '2001-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Tiara',
+            'type' => 'ibu hamil',
+            'gender' => 'perempuan',
+            'birth_date' => '2001-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Umi',
+            'type' => 'lansia',
+            'gender' => 'perempuan',
+            'birth_date' => '1960-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Vina',
+            'type' => 'lansia',
+            'gender' => 'perempuan',
+            'birth_date' => '1960-01-01',
+        ]);
+
+        Person::create([
+            'name' => 'Sukardi',
+            'type' => 'lansia',
+            'gender' => 'laki-laki',
+            'birth_date' => '1960-01-01',
+        ]);
+
+        Person::create([
             'name' => 'Budi',
             'type' => 'dewasa',
             'gender' => 'laki-laki',
@@ -23,21 +72,21 @@ class PersonSeeder extends Seeder
 
         Person::create([
             'name' => 'Caca',
-            'type' => 'dewasa',
+            'type' => 'anak-anak',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Dedi',
-            'type' => 'dewasa',
+            'type' => 'lansia',
             'gender' => 'laki-laki',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Eka',
-            'type' => 'dewasa',
+            'type' => 'anak-anak',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
@@ -51,7 +100,7 @@ class PersonSeeder extends Seeder
 
         Person::create([
             'name' => 'Gita',
-            'type' => 'dewasa',
+            'type' => 'anak-anak',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
@@ -72,14 +121,14 @@ class PersonSeeder extends Seeder
 
         Person::create([
             'name' => 'Joko',
-            'type' => 'dewasa',
+            'type' => 'lansia',
             'gender' => 'laki-laki',
-            'birth_date' => '1990-01-01',
+            'birth_date' => '1960-01-01',
         ]);
 
         Person::create([
             'name' => 'Kiki',
-            'type' => 'dewasa',
+            'type' => 'remaja',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
@@ -93,35 +142,35 @@ class PersonSeeder extends Seeder
 
         Person::create([
             'name' => 'Mama',
-            'type' => 'dewasa',
+            'type' => 'batita',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Nani',
-            'type' => 'dewasa',
+            'type' => 'balita',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Ojo',
-            'type' => 'dewasa',
+            'type' => 'batita',
             'gender' => 'laki-laki',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Pipi',
-            'type' => 'dewasa',
+            'type' => 'balita',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
 
         Person::create([
             'name' => 'Riri',
-            'type' => 'dewasa',
+            'type' => 'bayi',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);
@@ -135,7 +184,7 @@ class PersonSeeder extends Seeder
 
         Person::create([
             'name' => 'Titi',
-            'type' => 'dewasa',
+            'type' => 'ibu hamil',
             'gender' => 'perempuan',
             'birth_date' => '1990-01-01',
         ]);

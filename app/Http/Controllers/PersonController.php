@@ -13,17 +13,17 @@ class PersonController extends Controller
         // Ambil input pencarian dari form
         $search = $request->get('search_person');
 
-        // Query untuk mendapatkan data person, bisa menggunakan pencarian nama
+        // Query untuk mendapatkan data person dengan pencarian nama
         $people = Person::when($search, function ($query) use ($search) {
-            // Jika ada input pencarian, filter berdasarkan nama
             return $query->where('name', 'LIKE', '%' . $search . '%');
         })
-        ->orderBy('name', 'ASC') // Urutkan berdasarkan nama secara ascending
-        ->simplePaginate(5); // Gunakan pagination dengan 5 data per halaman
+        ->orderBy('name', 'ASC')
+        ->simplePaginate(5);
 
-        // Kirim data ke view 'person.index'
+        // Kirimkan data ke view
         return view('person.index', compact('people'));
     }
+
 
     // Fungsi untuk menampilkan form pembuatan person baru
     public function create()
@@ -64,7 +64,7 @@ class PersonController extends Controller
             'name' => 'required|string|max:255',
             'type' => 'required|string',
             'gender' => 'required|string',
-            'birth_date' => 'required|date', 
+            'birth_date' => 'required|date',
         ]);
 
         // Update data person dengan data yang sudah divalidasi
@@ -84,7 +84,7 @@ class PersonController extends Controller
         return redirect()->route('person.index')->with('success', 'Data Pengunjung berhasil dihapus!');
     }
 
-    // Fungsi untuk menampilkan semua data person tanpa pagination (misalnya untuk cetak data)
+    // Fungsi untuk menampilkan semua data person tanpa pagination
     public function printAll()
     {
         // Mengambil semua data person

@@ -35,6 +35,72 @@
         </div>
     </div>
 
+    <!-- Statistics Section -->
+    <div class="container landing-section mt-5 mb-5" id="statistics">
+        <div class="text-center mb-4" style="margin-top: 70px;">
+            <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
+            <p class="mb-5">Statistik Tahun 2024</p>
+        </div>
+        <div class="row mt-5 justify-center">
+            <div class="col-md-3 text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">🤰🏻</p>
+                    <h3 id="data-ibu-hamil">{{ \App\Models\Person::where('type', 'ibu hamil')->count() }}</h3>
+                    <p>Data Ibu Hamil</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👶🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'bayi')->count() }}</h3>
+                    <p>Data Bayi</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👨🏻‍🦲</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'batita')->count() }}</h3>
+                    <p>Data Batita</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">🧑🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'balita')->count() }}</h3>
+                    <p>Data Balita</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mt-4">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👦🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'anak-anak')->count() }}</h3>
+                    <p>Data Anak-anak</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mt-4">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👨🏻‍🦱</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'remaja')->count() }}</h3>
+                    <p>Data Remaja</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mt-4">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">🧔🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'dewasa')->count() }}</h3>
+                    <p>Data Dewasa</p>
+                </div>
+            </div>
+            <div class="col-md-3 text-center mt-4">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👴🏻</p>
+                    <h3 id="data-lansia">{{ \App\Models\Person::where('type', 'lansia')->count() }}</h3>
+                    <p>Data Lansia</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Services Section -->
     <div class="container landing-section mt-5 mb-5" id="services">
         <div class="text-center mb-4" style="margin-top: 70px;">
@@ -92,43 +158,6 @@
         </div>
     </div>
 
-    <!-- Statistics Section -->
-    <div class="container landing-section mt-5 mb-5" id="statistics">
-        <div class="text-center mb-4" style="margin-top: 70px;">
-            <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
-            <p class="mb-4">Statistik Tahun 2024</p>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    {{-- <h3 id="data-bayi">{{ $dataBayi }}</h3> --}}
-                    <h3 id="data-bayi">30</h3>
-                    <p>Data Bayi</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    {{-- <h3 id="data-balita">{{ $dataBalita }}</h3> --}}
-                    <h3 id="data-balita">43</h3>
-                    <p>Data Balita</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    {{-- <h3 id="data-ibu-hamil">{{ $dataIbuHamil }}</h3> --}}
-                    <h3 id="data-ibu-hamil">7</h3>
-                    <p>Data Ibu Hamil</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    {{-- <h3 id="data-lansia">{{ $dataLansia }}</h3> --}}
-                    <h3 id="data-lansia">5</h3>
-                    <p>Data Lansia</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Footer -->
