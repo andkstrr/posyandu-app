@@ -6,7 +6,7 @@
 
     <form action="{{ route('item.update', $item->id) }}" method="POST">
         @csrf
-        @method('PUT') <!-- Use PUT for updates -->
+        @method('PUT') 
         <div class="mb-3">
             <label for="name" class="form-label">Nama Barang:</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $item->name) }}" required>

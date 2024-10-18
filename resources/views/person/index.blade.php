@@ -81,27 +81,29 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($people as $person)
-                <tr>
-                    <td>{{ $loop->iteration + ($people->currentPage() - 1) * $people->perPage() }}</td>
-                    <td>{{ $person->name }}</td>
-                    <td>{{ $person->type }}</td>
-                    <td>{{ $person->gender }}</td>
-                    <td>{{ $person->birth_date }}</td>
-                    <td>
-                        <a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{ route('person.destroy', $person->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
+            @foreach($people as $person)
+            <tr>
+                <td>{{ $loop->iteration + ($people->currentPage() - 1) * $people->perPage() }}</td>
+                <td>{{ $person->name }}</td>
+                <td>{{ $person->type }}</td>
+                <td>{{ $person->gender }}</td>
+                <td>{{ $person->birth_date }}</td>
+                <td>
+                    <a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <form action="{{ route('person.destroy', $person->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+
+            @if($people->isEmpty())
                 <tr>
                     <td colspan="6" class="text-center">Tidak ada data orang.</td>
                 </tr>
-            @endforelse
+            @endif
         </tbody>
     </table>
 

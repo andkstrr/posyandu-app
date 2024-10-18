@@ -62,25 +62,27 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($items as $item)
-                <tr>
-                    <td>{{ $loop->iteration + ($items->currentPage() - 1) * $items->perPage() }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->type }}</td>
-                    <td>
-                        <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                        <form action="{{ route('item.destroy', $item->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @empty
+            @foreach($items as $item)
+            <tr>
+                <td>{{ $loop->iteration + ($items->currentPage() - 1) * $items->perPage() }}</td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->type }}</td>
+                <td>
+                    <a href="{{ route('item.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                    <form action="{{ route('item.destroy', $item->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+
+            @if($items->isEmpty())
                 <tr>
                     <td colspan="4" class="text-center">Tidak ada data item.</td>
                 </tr>
-            @endforelse
+            @endif
         </tbody>
     </table>
 
