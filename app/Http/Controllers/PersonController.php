@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use App\Exports\ExportDataPerson;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PersonController extends Controller
 {
@@ -92,5 +94,17 @@ class PersonController extends Controller
 
         // Kirim data ke view 'person.print'
         return view('person.print', compact('people'));
+    }
+
+    public function exportData()
+    {
+        // Jika hanya ingin menampilkan data dalam format JSON (opsional)
+        return response()->json(Person::all());
+    }
+
+    public function exportExcel()
+    {
+        // Mendownload data person dalam format Excel
+        return Excel::download(new ExportDataPerson, 'data-person-dahlia.xlsx');
     }
 }

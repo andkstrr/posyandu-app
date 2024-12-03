@@ -9,17 +9,12 @@
         <div class="alert alert-danger">{{ session('failed') }}</div>
     @endif
 
-    <div class="d-flex justify-content-between mb-3">
-        <!-- Tombol untuk membuka modal -->
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createItemModal">
-            + Tambah Data Item
-        </button>
-
+    <div class="d-flex justify-content-end mb-3">
         <!-- Form pencarian -->
         <form action="{{ route('item.index') }}" method="GET" class="d-flex">
             <input type="text" name="search_item" class="form-control me-2" placeholder="Cari nama item..." value="{{ request('search_item') }}" style="width: 250px;">
-            <button type="submit" class="btn btn-secondary">Cari Data</button>
-            <button {{ route('item.index' )}} class="btn btn-danger ms-1">Clear</button>
+            <button type="submit" class="btn btn-success">Cari Data</button>
+            <a href="{{ route('item.index' )}}" class="btn btn-danger ms-1">Clear</a>
         </form>
     </div>
 
@@ -91,9 +86,19 @@
     </table>
 
     <div class="d-flex justify-content-lg-between">
+        <!-- Tombol untuk membuka modal -->
+        @if (Auth::user()->role == 'kader')
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createItemModal">
+            + Tambah Data Item
+        </button>
+        @endif
+
+        <!-- Tombol Print -->
         <div class="d-flex content-start mt-3">
-            <!-- Tombol Print -->
-            <a href="{{ route('item.print') }}" class="btn btn-secondary">Print Semua Data</a>
+            @if (Auth::user()->role == 'admin')
+                <a href="{{ route('item.print') }}" class="btn btn-primary">Print .pdf</a>
+                <a href="{{ route('item.export') }}" class="btn btn-success ms-1">Export .xlsx</a>
+            @endif
         </div>
 
         {{-- Tampilkan pagination --}}

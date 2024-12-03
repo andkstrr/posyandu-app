@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportDataItem;
 
 class ItemController extends Controller
 {
@@ -62,7 +64,7 @@ class ItemController extends Controller
         // Validasi inputan dari form
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'type' => 'required|string', 
+            'type' => 'required|string',
         ]);
 
         // Mengupdate data item dengan data yang sudah divalidasi
@@ -91,5 +93,17 @@ class ItemController extends Controller
 
         // Mengirim data item ke view 'item.print'
         return view('item.print', compact('item'));
+    }
+
+    public function exportData()
+    {
+        // Jika hanya ingin menampilkan data dalam format JSON (opsional)
+        return response()->json(Item::all());
+    }
+
+    public function exportExcel()
+    {
+        // Mendownload data person dalam format Excel
+        return Excel::download(new ExportDataItem, 'data-item-dahlia.xlsx');
     }
 }

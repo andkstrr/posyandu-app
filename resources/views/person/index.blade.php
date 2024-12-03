@@ -9,12 +9,7 @@
         <div class="alert alert-danger">{{ session('failed') }}</div>
     @endif
 
-    <div class="d-flex justify-content-between mb-3">
-        <!-- Tombol untuk membuka modal -->
-        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPersonModal">
-            + Tambah Data Pengunjung
-        </button>
-
+    <div class="d-flex justify-content-end mb-3">
         <!-- Form pencarian -->
         <form action="{{ route('person.index') }}" method="GET" class="d-flex">
             <input type="text" name="search_person" class="form-control me-2" placeholder="Cari nama..." value="{{ request('search_person') }}" style="width: 250px;">
@@ -91,7 +86,7 @@
                 <td>{{ $person->name }}</td>
                 <td>{{ $person->type }}</td>
                 <td>{{ $person->gender }}</td>
-                <td>{{ $person->birth_date }}</td>
+                <td>{{ \Carbon\Carbon::parse($person->birth_date)->isoFormat('DD MMMM YYYY') }}</td>
                 <td>
                     <a href="{{ route('person.edit', $person->id) }}" class="btn btn-primary btn-sm">Edit</a>
                     <form action="{{ route('person.destroy', $person->id) }}" method="POST" class="d-inline">
@@ -112,9 +107,17 @@
     </table>
 
     <div class="d-flex justify-content-lg-between">
+        @if (Auth::user()->role == 'kader')
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPersonModal">
+            + Tambah Data Pengunjung
+        </button>
+
+        @endif
         <div class="d-flex content-start mt-3">
-            <!-- Tombol Print -->
-            <a href="{{ route('person.print') }}" class="btn btn-primary">Print Semua Data</a>
+            @if (Auth::user()->role == 'admin')
+                <a href="{{ route('person.print') }}" class="btn btn-primary">Print .pdf</a>
+                <a href="{{ route('person.export') }}" class="btn btn-success ms-1">Export .xlsx</a>
+            @endif
         </div>
 
         {{-- Tampilkan pagination --}}
