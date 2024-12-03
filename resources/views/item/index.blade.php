@@ -5,6 +5,9 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+    @if(session('failed'))
+        <div class="alert alert-danger">{{ session('failed') }}</div>
+    @endif
 
     <div class="d-flex justify-content-between mb-3">
         <!-- Tombol untuk membuka modal -->
@@ -16,6 +19,7 @@
         <form action="{{ route('item.index') }}" method="GET" class="d-flex">
             <input type="text" name="search_item" class="form-control me-2" placeholder="Cari nama item..." value="{{ request('search_item') }}" style="width: 250px;">
             <button type="submit" class="btn btn-secondary">Cari Data</button>
+            <button {{ route('item.index' )}} class="btn btn-danger ms-1">Clear</button>
         </form>
     </div>
 

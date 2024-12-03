@@ -17,15 +17,41 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
+                        <!-- Dashboard Menu -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Dashboard</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('person.index') }}">Data Pengunjung</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('item.index') }}">Data Barang</a>
-                        </li>
+
+                        <!-- Menu untuk Admin dan Kader -->
+                        @auth
+                            @if(auth()->user()->role === 'admin' || auth()->user()->role === 'kader')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('person.index') }}">Data Pengunjung</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('item.index') }}">Data Barang</a>
+                                </li>
+                            @endif
+                        @endauth
+
+                        <!-- Guest untuk user yang terdeteksi belum login / tidak terautentikasi -->
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link text-primary" href="{{ url('/login') }}" >Login</a>
+                            </li>
+                        @endguest
+
+                        <!-- Logout untuk User yang Login -->
+                        @auth
+                            <li class="nav-item">
+                                <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-link text-primary" style="cursor: pointer;">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </div>

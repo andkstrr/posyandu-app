@@ -3,7 +3,10 @@
 @section('content')
 <div class="container">
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
+    @if(session('failed'))
+        <div class="alert alert-danger">{{ session('failed') }}</div>
     @endif
 
     <div class="d-flex justify-content-between mb-3">
@@ -15,7 +18,8 @@
         <!-- Form pencarian -->
         <form action="{{ route('person.index') }}" method="GET" class="d-flex">
             <input type="text" name="search_person" class="form-control me-2" placeholder="Cari nama..." value="{{ request('search_person') }}" style="width: 250px;">
-            <button type="submit" class="btn btn-secondary">Cari Data</button>
+            <button type="submit" class="btn btn-success">Cari Data</button>
+            <a href="{{ route('person.index') }}" class="btn btn-danger ms-1">Clear</a>
         </form>
     </div>
 
@@ -110,7 +114,7 @@
     <div class="d-flex justify-content-lg-between">
         <div class="d-flex content-start mt-3">
             <!-- Tombol Print -->
-            <a href="{{ route('person.print') }}" class="btn btn-secondary">Print Semua Data</a>
+            <a href="{{ route('person.print') }}" class="btn btn-primary">Print Semua Data</a>
         </div>
 
         {{-- Tampilkan pagination --}}

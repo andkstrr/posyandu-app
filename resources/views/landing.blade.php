@@ -3,21 +3,25 @@
 @section('title', 'Posyandu Dahlia')
 
 @section('content')
-    <div class="text-center">
-        <h3 class="fw-bold">Selamat Datang!</h3>
-        <p>Anda Login Sebagai : <b></b></p>
-    </div>
+    @if(Session::get('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+    @endif
+    @if(Session::get('failed'))
+        <div class="alert alert-danger">{{ Session::get('failed') }}</div>
+    @endif
 
     <!-- Hero Section -->
-    <section class="hero mb-5" id="home" style="background: url('{{ asset('images/banner.png') }}') no-repeat center center; background-size: cover;
-        <div class="container text-center py-5">
-            <h1 class="display-4 text-black-50">‎ ‎ ‎ ‎ ‎ </h1>
-            <h1 class="display-4 text-black-50">‎ ‎ ‎ ‎ ‎ </h1>
-            <h1 class="display-4 text-black-50">‎ ‎ ‎ ‎ ‎ </h1>
-            <h1 class="display-4 text-black-50">‎ ‎ ‎ ‎ ‎ </h1>
-            <h1 class="display-4 text-black-50">‎ ‎ ‎ ‎ ‎ </h1>
+    <div class="jumbotron mb-5">
+        <div class="display-4">
+            <b>Selamat Datang
+            @if(Auth::check())
+                <b class="fw-bold">{{ Auth::user()->name }},</b>
+            @endif
+            di Aplikasi Posyandu Dahlia!</b>
         </div>
-    </section>
+        <hr class="my-4">
+        <p>Aplikasi ini digunakan hanya oleh Pegawai Administrator POSYANDU. Digunakan untuk mengelola Data Posyandu, Data Pengunjung, dan Data Kesehatan</p>
+    </div>
 
     <!-- About Section -->
     <div class="container landing-section mb-5" id="about">
@@ -35,79 +39,117 @@
         </div>
     </div>
 
-    <!-- Statistics Section -->
-    <div class="container landing-section mt-5 mb-5" id="statistics">
-        <div class="text-center mb-4" style="margin-top: 70px;">
-            <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
-            <p class="mb-5">Statistik Tahun 2024</p>
-        </div>
-        <div class="row mt-5 justify-center">
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">🤰🏻</p>
-                    <h3 id="data-ibu-hamil">{{ \App\Models\Person::where('type', 'ibu hamil')->count() }}</h3>
-                    <p>Data Ibu Hamil</p>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <!-- Pengumuman -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Pengumuman</h5>
+                        <p class="text-muted">DITERBITKAN: Kamis, 17 Oktober 2024</p>
+                        <h6 class="fw-bold">Ayo ke Posyandu Dahlia!</h6>
+                        <p class="card-text">Mari bergabung dan ikut serta dalam Posyandu Dahlia Desa Ciburuy setiap tanggal 9! Dengan kehadiran Anda, kita dapat berperan aktif dalam memantau pertumbuhan dan perkembangan buah hati Anda. Terima kasih...</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">👶🏻</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'bayi')->count() }}</h3>
-                    <p>Data Bayi</p>
+
+            <!-- Agenda Posyandu -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Agenda Posyandu</h5>
+                        <p class="text-muted">Tidak Ada Agenda Baru</p>
+                        <p>Belum ada Agenda dalam waktu dekat ini, untuk melihat agenda yang telah lewat silahkan cek di halaman <a href="#">Arsip Agenda</a>.</p>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">👨🏻‍🦲</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'batita')->count() }}</h3>
-                    <p>Data Batita</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">🧑🏻</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'balita')->count() }}</h3>
-                    <p>Data Balita</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">👦🏻</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'anak-anak')->count() }}</h3>
-                    <p>Data Anak-anak</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">👨🏻‍🦱</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'remaja')->count() }}</h3>
-                    <p>Data Remaja</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">🧔🏻</p>
-                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'dewasa')->count() }}</h3>
-                    <p>Data Dewasa</p>
-                </div>
-            </div>
-            <div class="col-md-3 text-center mt-4">
-                <div class="statistic-card">
-                    <p class="fs-1 fw-bold">👴🏻</p>
-                    <h3 id="data-lansia">{{ \App\Models\Person::where('type', 'lansia')->count() }}</h3>
-                    <p>Data Lansia</p>
+
+            <!-- Edukasi Kesehatan -->
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Edukasi Kesehatan</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <span class="text-muted">Rabu, 03 Juli 2024</span>
+                                <br>
+                                <a href="https://www.nestlehealthscience.co.id/artikel/dampak-stunting-untuk-anak#:~:text=Anak%20stunting%20terlihat%20juga%20lebih,tubuh%20anak%20terbilang%20lebih%20rentan."  target="_blank"
+                                 class="text-decoration-none">Pengaruh Pencemaran Lingkungan terhadap Kejadian Stunting pada Balita</a>
+                            </li>
+                            <li>
+                                <span class="text-muted">Sabtu, 14 September 2024</span>
+                                <br>
+                                <a href="#" class="text-decoration-none">Mitos atau Fakta</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <div id="motivationCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#motivationCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#motivationCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#motivationCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#motivationCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#motivationCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active" style="background-color: #65a9f1; color: white;">
+                <div class="text-center m-3 p-5">
+                    <h3 class="fw-bold">"Cegah stunting, mulai dari 1000 hari pertama kehidupan anak."</h3>
+                    <p class="text-light">- Kampanye Gizi Nasional</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-color: #65a9f1;  color: white;">
+                <div class="text-center m-3 p-5">
+                    <h3 class="fw-bold">"Ajak keluarga konsumsi makanan bergizi seimbang setiap hari."</h3>
+                    <p class="text-light">- Kementerian Kesehatan</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-color: #65a9f1; color: white;">
+                <div class="text-center m-3 p-5">
+                    <h3 class="fw-bold">"Stunting bisa dicegah dengan memberikan ASI eksklusif."</h3>
+                    <p class="text-light">- Organisasi Kesehatan Dunia (WHO)</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-color: #65a9f1; color: white;">
+                <div class="text-center m-3 p-5">
+                    <h3 class="fw-bold">"Perbaiki sanitasi untuk cegah infeksi dan stunting."</h3>
+                    <p class="text-light">- UNICEF</p>
+                </div>
+            </div>
+            <div class="carousel-item" style="background-color: #65a9f1; color: white;">
+                <div class="text-center m-3 p-5">
+                    <h3 class="fw-bold">"Cegah stunting, wujudkan generasi emas Indonesia."</h3>
+                    <p class="text-light">- Posyandu Indonesia</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#motivationCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#motivationCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <!-- Services Section -->
-    <div class="container landing-section mt-5 mb-5" id="services">
+    <div class="container landing-section mb-5" id="services">
         <div class="text-center mb-4" style="margin-top: 70px;">
             <h2 class="fw-bold fs-1">Layanan Kami</h2>
             <p class="mb-5">Kami menyediakan berbagai layanan untuk mendukung kesehatan ibu dan anak.</p>
         </div>
-        <div class="row overflow-scroll" style="overflow-x: auto; white-space: nowrap">
+        <div class="row overflow-scroll" style="overflow-x: hidden;">
             <div class="d-flex flex-nowrap ">
                 <div class="col-md-4 text-center">
                     <div class="card mb-4" style="display: inline-block; width: 400px;">
@@ -159,9 +201,61 @@
     </div>
 
 
+    <!-- Statistics Section -->
+    <div class="container landing-section mt-5 mb-5" id="statistics">
+        <div class="text-center mb-4" style="margin-top: 70px;">
+            <h2 class="fw-bold fs-1">Data Posyandu Dahlia</h2>
+            <p class="mb-5">Statistik Tahun 2024</p>
+        </div>
+        <div class="row row-cols-2 row-cols-md-3 g-2 justify-content-center">
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">🤰🏻</p>
+                    <h3 id="data-ibu-hamil">{{ \App\Models\Person::where('type', 'ibu hamil')->count() }}</h3>
+                    <p>Data Ibu Hamil</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👶🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'bayi')->count() }}</h3>
+                    <p>Data Bayi</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👨🏻‍🦲</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'batita')->count() }}</h3>
+                    <p>Data Batita</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">🧑🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'balita')->count() }}</h3>
+                    <p>Data Balita</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👦🏻</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'anak-anak')->count() }}</h3>
+                    <p>Data Anak-anak</p>
+                </div>
+            </div>
+            <div class="col text-center">
+                <div class="statistic-card">
+                    <p class="fs-1 fw-bold">👨🏻‍🦱</p>
+                    <h3 id="data-bayi">{{ \App\Models\Person::where('type', 'remaja')->count() }}</h3>
+                    <p>Data Remaja</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="bg-light text-center py-4">
-        <p>&copy; {{ date('Y') }} Posyandu Dahlia. All Rights Reserved.</p>
+        <h5>&copy; {{ date('Y') }} Posyandu Dahlia. All Rights Reserved.</h5>
+        <p>Jl. Ciburuy RT01/RW03, Desa Ciburuy, Kec. Cigombong, Kab. Bogor</p>
     </footer>
 @endsection

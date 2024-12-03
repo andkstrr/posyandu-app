@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,27 +16,56 @@ use App\Http\Controllers\ItemController;
 |
 */
 
+// Route untuk landing page (akses terbuka untuk semua pengguna)
 Route::get('/', function () {
     return view('landing');
 });
 
-Route::prefix('person')->name('person.')->group(function () {
-    Route::get('/', [PersonController::class, 'index'])->name('index');
-    Route::post('/store', [PersonController::class, 'store'])->name('store');
-    Route::get('/edit/{person}', [PersonController::class, 'edit'])->name('edit');
-    Route::put('/update/{person}', [PersonController::class, 'update'])->name('update');
-    Route::delete('/destroy/{person}', [PersonController::class, 'destroy'])->name('destroy');
+
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// Route khusus untuk Admin
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
+    Route::prefix('person')->name('person.')->group(function () {
+        Route::get('/', [PersonController::class, 'index'])->name('index');
+        Route::post('/store', [PersonController::class, 'store'])->name('store');
+        Route::get('/edit/{person}', [PersonController::class, 'edit'])->name('edit');
+        Route::put('/update/{person}', [PersonController::class, 'update'])->name('update');
+        Route::delete('/destroy/{person}', [PersonController::class, 'destroy'])->name('destroy');
+        Route::get('/print', [PersonController::class, 'printAll'])->name('print');
+    });
+
+    Route::prefix('item')->name('item.')->group(function () {
+        Route::get('/', [ItemController::class, 'index'])->name('index');
+        Route::get('/create', [ItemController::class, 'create'])->name('create');
+        Route::post('/store', [ItemController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ItemController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ItemController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [ItemController::class, 'destroy'])->name('destroy');
+        Route::get('/print', [ItemController::class, 'printAll'])->name('print'); // Print data item
+    });
 });
 
+// Route khusus untuk Kader
+Route::middleware(['auth', 'isKader'])->prefix('kader')->group(function () {
+    Route::prefix('person')->name('person.')->group(function () {
+        Route::get('/', [PersonController::class, 'index'])->name('index');
+        Route::post('/store', [PersonController::class, 'store'])->name('store');
+        Route::get('/edit/{person}', [PersonController::class, 'edit'])->name('edit');
+        Route::put('/update/{person}', [PersonController::class, 'update'])->name('update');
+        Route::delete('/destroy/{person}', [PersonController::class, 'destroy'])->name('destroy');
+        Route::get('/print', [PersonController::class, 'printAll'])->name('print');
+    });
 
-Route::prefix('item')->name('item.')->group(function () {
-    Route::get('/', [ItemController::class, 'index'])->name('index'); 
-    Route::get('/create', [ItemController::class, 'create'])->name('create');
-    Route::post('/store', [ItemController::class, 'store'])->name('store');
-    Route::get('/edit/{id}', [ItemController::class, 'edit'])->name('edit');
-    Route::put('/update/{id}', [ItemController::class, 'update'])->name('update');
-    Route::delete('/destroy/{id}', [ItemController::class, 'destroy'])->name('destroy');
+    Route::prefix('item')->name('item.')->group(function () {
+        Route::get('/', [ItemController::class, 'index'])->name('index');
+        Route::get('/create', [ItemController::class, 'create'])->name('create');
+        Route::post('/store', [ItemController::class, 'store'])->name('store');
+        Route::get('/edit/{id}', [ItemController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ItemController::class, 'update'])->name('update');
+        Route::delete('/destroy/{id}', [ItemController::class, 'destroy'])->name('destroy');
+        Route::get('/print', [ItemController::class, 'printAll'])->name('print'); // Print data item
+    });
 });
-
-Route::get('/person/print', [PersonController::class, 'printAll'])->name('person.print');
-Route::get('/item/print', [ItemController::class, 'printAll'])->name('item.print');
